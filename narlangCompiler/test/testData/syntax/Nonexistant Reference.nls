@@ -2,7 +2,7 @@
 {
 	render
 	{
-		$nonexistantVariable
+		~object "I don't exist"
 	}
 }
 

@@ -1,0 +1,24 @@
+﻿new story "Test"
+{
+	render
+	{
+		~first "Object 1"
+		~second "Object 2"
+	}
+}
+
+new first "Object 1"
+{
+	render
+	{
+		This is the first object.
+	}
+}
+
+new second "Object 2"
+{
+	render
+	{
+		This is the second object.
+	}
+}

@@ -10,6 +10,12 @@ namespace narlang
 {
 	public class NarlangStream : IEnumerable<char>
 	{
+		private enum eState
+		{
+			read,
+			blockcomment,
+		}
+		private eState m_state;
 		public int Index { get; private set; }
 		public int LineNumber { get; private set; } = 1;
 		public string SourcePath { get; }
@@ -31,29 +37,74 @@ namespace narlang
 
 		public IEnumerator<char> GetEnumerator()
 		{
-			for (Index = 0; Index < m_raw.Length; Index++)
+			for (Index = 0; Index < m_raw.Length;)
 			{
-				char c = m_raw[Index];
+				Invalidate();
+				var indexStore = Index;
+				if (Peek.StartsWith(Const.NEWLINE))
 				{
-					Peek = m_raw.Substring(Index);
-					var nextLineBreakIndex = Peek.IndexOf(Const.NEWLINE);
-					RestOfLine = Peek;
-					if (nextLineBreakIndex >= 0)
-					{
-						RestOfLine = Peek.Substring(0, nextLineBreakIndex);
-					}
-					if (Peek.StartsWith(Const.NEWLINE))
-					{
-						LineNumber++;
-						m_lineHistory.Clear();
-						Skip(Const.NEWLINE);
-						yield return '\n';
-						continue;
-					}
+					LineNumber++;
+					ClearLine();
+					Skip(Const.NEWLINE);
+					yield return '\n';
+					continue;
 				}
+				if (ConsumeComments())
+				{
+					continue;
+				}
+				char c = m_raw[Index];
 				yield return c;
-				m_lineHistory.Append(c);
+				// If we haven't skipped, move now
+				if(Index == indexStore)
+				{
+					Skip(c);
+				}
 			}
+		}
+
+		void Invalidate()
+		{
+			Peek = m_raw.Substring(Index);
+			var nextLineBreakIndex = Peek.IndexOf(Const.NEWLINE);
+			RestOfLine = Peek;
+			if (nextLineBreakIndex >= 0)
+			{
+				RestOfLine = Peek.Substring(0, nextLineBreakIndex);
+			}
+		}
+
+		bool ConsumeComments()
+		{
+			// Single line comment - ignore
+			if (Regex.IsMatch(RestOfLine, Const.SINGLE_LINE_COMMENT))
+			{
+				Skip(RestOfLine);
+				return true;
+			}
+			// Multi line comment - ignore
+			if (m_state == eState.blockcomment)
+			{
+				if (Peek.StartsWith(Const.MULTILINE_COMMENT_END))
+				{
+					m_state = eState.read;
+					Skip(Const.MULTILINE_COMMENT_END);
+					return true;
+				}
+				Skip(m_raw[Index]);
+				return true;
+			}
+			if (Peek.StartsWith(Const.MULTILINE_COMMENT_START))
+			{
+				m_state = eState.blockcomment;
+				Skip(Const.MULTILINE_COMMENT_START);
+				return true;
+			}
+			else if (Peek.StartsWith(Const.MULTILINE_COMMENT_END))
+			{
+				throw new ParseException(this, $"Unexpected multiline comment end: {CurrentLine}");
+			}
+			return false;
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
@@ -61,15 +112,9 @@ namespace narlang
 			return GetEnumerator();
 		}
 
-		public void Skip(Match match)
-		{
-			Index += match.Length - 1 + match.Index;
-			LineNumber += match.Value.Count(c => c == '\n');
-		}
-
 		public void Skip(int length)
 		{
-			if(m_raw.Length < Index + length)
+			if (m_raw.Length < Index + length)
 			{
 				throw new ParseException(SourcePath, LineNumber, CharacterIndex, "Bad skip value");
 			}
@@ -79,8 +124,21 @@ namespace narlang
 
 		public void Skip(string str)
 		{
-			Index += str.Length - 1;
-			LineNumber += str.Count(c => c == '\n');
+			m_lineHistory.Append(str);
+			Index += str.Length;
+			if(str.Contains('\n'))
+			{
+				ClearLine();
+				LineNumber += str.Count(c => c == '\n');
+			}
+			Invalidate();
+		}
+
+		private void Skip(char c)
+		{
+			m_lineHistory.Append(c);
+			Index++;
+			Invalidate();
 		}
 
 		public void ClearLine()

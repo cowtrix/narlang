@@ -23,7 +23,7 @@ namespace narlang
 		{
 			if (!renderer.Nodes.TryGetValue(ID, out var node))
 			{
-				throw new ParseException(Address, $"Variable not found: {ID}");
+				throw new ParseException(Address, $"Reference not found: {ID}");
 			}
 			Logger.Debug($"Following reference to {ID}");
 			return node.Render(renderer);

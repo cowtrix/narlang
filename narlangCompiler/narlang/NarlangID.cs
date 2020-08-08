@@ -21,7 +21,7 @@ namespace narlang
 
 		public override string ToString()
 		{
-			return $"{Type}: {Identifier}";
+			return $"~{Type} \"{Identifier}\"";
 		}
 	}
 }

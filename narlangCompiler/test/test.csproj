@@ -21,7 +21,7 @@
     <None Update="testData\syntax\Circular Reference.nls">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-    <None Update="testData\syntax\Nonexistant Variable.nls">
+    <None Update="testData\syntax\Nonexistant Reference.nls">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="testData\syntax\Simple Story.nls">

@@ -1,0 +1,6 @@
+﻿new story "Test"
+{
+	render
+	{
+		This is a test.
+	}

@@ -8,19 +8,21 @@ namespace narlang_test
 	[TestClass]
 	public class Syntax : CompilerTests
 	{
-		/*[DataTestMethod]
-		[DataRow("Nonexistant Variable", "ERROR: Nonexistant Variable.nls [line: 11, col:1]	Unable to resolve variable nonexistantVariable")]
-		//[DataRow("Circular Reference", "ERROR: Circular Reference.nls [line: 1, col:0]	Reference cycle detected")]
-		public void SyntaxBad(string file, string expectedError)
+		[DataTestMethod]
+		[DataRow("Nonexistant Reference", "ERROR: Nonexistant Reference.nls [line: 9, col:2]	Reference not found: ~object \"I don't exist\"")]
+		[DataRow("Simple Story - Missing End Bracket", "ERROR: Simple Story - Missing End Bracket.nls [line: 9, col:0]	Expected \"}\" at end of file.")]
+		public void SyntaxException(string file, string expectedError)
 		{
 			AssertX.Throws<ParseException>(
-					() => Compiler.Compile($"{DataPath}\\{file}.nls", BuildPath),
+					() => Compiler.Compile($"{GetInputPath()}\\{file}.nls", GetOutputPath()),
 					e => e.Message == expectedError);
-		}*/
+		}
 
 		[DataTestMethod]
-		[DataRow("Simple Story", "Test", "This is a test.\r\n")]
-		//[DataRow("Circular Reference", "ERROR: Circular Reference.nls [line: 1, col:0]	Reference cycle detected")]
+		/*[DataRow("Simple Story", "Test", "This is a test.\r\n")]
+		[DataRow("Reference", "Test", "This is a test.\r\n")]
+		[DataRow("Two References", "Test", "This is the first object.\r\nThis is the second object.\r\n")]*/
+		[DataRow("Comments", "Test", "This is a test.\r\n")]
 		public void SyntaxOutput(string file, string outFileName, string outFileContent)
 		{
 			Compiler.Compile($"{GetInputPath()}\\{file}.nls", GetOutputPath());

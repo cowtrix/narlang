@@ -14,8 +14,8 @@
 		public const string BLOCK_START = "{";
 		public const string BLOCK_END = "}";
 		public const string NEWLINE = "\r\n";
-		public const string FUNCTION_DECLARATION_REGEX = @"(\w+)\s*\{((?:[\n\r\s]|.)*?)\}\s*";
-		public const string VARIABLE_DECLARATION_REGEX = "(\\w{3,}):\\s*\\\"(.*)\\\"";
+		public const string FUNCTION_DECLARATION_REGEX = @"^\s*(\w+)\s*\{((?:[\n\r\s]|.)*?)\}\s*";
+		public const string VARIABLE_DECLARATION_REGEX = "^\\s*(\\w{3,}):\\s*\\\"(.*)\\\"\\s*";
 		public const string REFERENCE_REGEX = "~(\\w{3,})\\s*\"(.*)\"";
 		public const char REFERENCE_CHAR = '~';
 		public const string VARIABLE_REGEX = "\\$(\\w{3,})";

@@ -13,12 +13,6 @@ namespace narlang
 	public class NarlangStreamReader
 	{
 		public Dictionary<NarlangID, NarlangNode> Nodes { get; } = new Dictionary<NarlangID, NarlangNode>();
-		private enum eState
-		{
-			read,
-			blockcomment,
-		}
-		private eState m_state;
 		private NarlangNode m_currentNode;
 		public NarlangStream RootStream { get; private set; }
 		public void ReadStream(string file, string data)
@@ -33,35 +27,8 @@ namespace narlang
 			RootStream = nStr;
 			foreach (var c in nStr)
 			{
-				// Single line comment - ignore
-				if (Regex.IsMatch(nStr.CurrentLine, Const.SINGLE_LINE_COMMENT))
-				{
-					nStr.Skip(nStr.CurrentLine);
-					continue;
-				}
-				// Multi line comment - ignore
-				if (m_state == eState.blockcomment)
-				{
-					if (nStr.Peek.StartsWith(Const.MULTILINE_COMMENT_END))
-					{
-						m_state = eState.read;
-						nStr.Skip(Const.MULTILINE_COMMENT_END);
-					}
-					continue;
-				}
-				if (nStr.Peek.StartsWith(Const.MULTILINE_COMMENT_START))
-				{
-					m_state = eState.blockcomment;
-					nStr.Skip(Const.MULTILINE_COMMENT_START);
-					continue;
-				}
-				else if (nStr.Peek.StartsWith(Const.MULTILINE_COMMENT_END))
-				{
-					throw new ParseException(nStr, $"Unexpected multiline comment end: {nStr.CurrentLine}");
-				}
-
 				// new node declaration
-				var newNodeMatch = Regex.Match(nStr.CurrentLine, Const.REGEX_NEW, RegexOptions.Multiline);
+				var newNodeMatch = Regex.Match(nStr.RestOfLine, Const.REGEX_NEW, RegexOptions.Multiline);
 				if (newNodeMatch.Success)
 				{
 					// node creation
@@ -89,7 +56,7 @@ namespace narlang
 						m_currentNode = new NarlangNode(id, address());
 					}
 					Nodes.Add(id, m_currentNode);
-					nStr.Skip(nStr.CurrentLine);
+					nStr.Skip(newNodeMatch.Index + newNodeMatch.Length);
 					continue;
 				}
 				else if (m_currentNode != null)
@@ -113,7 +80,6 @@ namespace narlang
 						m_currentNode.Opened = false;
 						m_currentNode = m_currentNode.Parent;
 						nStr.Skip(Const.BLOCK_END);
-						nStr.ClearLine();
 						continue;
 					}
 					else if (!m_currentNode.Opened && !char.IsWhiteSpace(c))
@@ -121,12 +87,12 @@ namespace narlang
 						throw new ParseException(nStr, $"Invalid object declaration: {nStr.CurrentLine}");
 					}
 					// we are within an object block. Check if it looks like a field.
-					var dataMatch = Regex.Match(nStr.CurrentLine, Const.VARIABLE_DECLARATION_REGEX);
+					var dataMatch = Regex.Match(nStr.Peek, Const.VARIABLE_DECLARATION_REGEX);
 					if (!dataMatch.Success)
 					{
 						dataMatch = Regex.Match(nStr.Peek, Const.FUNCTION_DECLARATION_REGEX, RegexOptions.Multiline);
 					}
-					if (dataMatch.Success && dataMatch.Index < nStr.CurrentLine.Length)
+					if (dataMatch.Success && dataMatch.Index < nStr.RestOfLine.Length)
 					{
 						var name = dataMatch.Groups[1].Value;
 						if (m_currentNode.Data.ContainsKey(name))
@@ -148,8 +114,8 @@ namespace narlang
 							throw new ParseException(e.Stream, nStr, e.Message);
 						}
 						Logger.Debug($"Discovered data {name} for {m_currentNode}");
-						nStr.Skip(dataMatch.Index + dataMatch.Length - startReadIndex);						
-						nStr.ClearLine();
+						nStr.Skip(dataMatch.Length - startReadIndex);
+						//nStr.Skip(Const.BLOCK_END);
 						continue;
 					}
 				}
@@ -157,6 +123,10 @@ namespace narlang
 				{
 					throw new ParseException(nStr, $"Couldn't parse: {nStr.CurrentLine}");
 				}
+			}
+			if(m_currentNode != null)
+			{
+				throw new ParseException(nStr, $"Expected \"{Const.BLOCK_END}\" at end of file.");
 			}
 		}
 
@@ -172,6 +142,7 @@ namespace narlang
 			};
 			foreach (var c in subStr)
 			{
+
 				if(c == Const.REFERENCE_CHAR)
 				{
 					var match = Regex.Match(subStr.RestOfLine, Const.REFERENCE_REGEX);

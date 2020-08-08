@@ -1,0 +1,15 @@
+﻿new story "Test"
+{
+	render
+	{
+		~object "Object"
+	}
+}
+
+new object "Object"
+{
+	render
+	{
+		This is a test.
+	}
+}
