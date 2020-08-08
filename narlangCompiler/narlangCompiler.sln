@@ -7,12 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "narlang", "narlang\narlang.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CA4185D9-898F-4022-BF3A-2C677F61A9F2}"
 	ProjectSection(SolutionItems) = preProject
-		narlang.md = narlang.md
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lib", "lib\lib.csproj", "{E4A5ECBB-EA16-424F-80E5-3DD6893E9B06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{145A146B-AD59-47C9-A177-8BBBBB659008}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test", "test\test.csproj", "{145A146B-AD59-47C9-A177-8BBBBB659008}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

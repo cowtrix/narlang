@@ -10,7 +10,7 @@ namespace narlang_test
 	{
 		[DataTestMethod]
 		[DataRow("Nonexistant Reference", "ERROR: Nonexistant Reference.nls [line: 9, col:2]	Reference not found: ~object \"I don't exist\"")]
-		[DataRow("Simple Story - Missing End Bracket", "ERROR: Simple Story - Missing End Bracket.nls [line: 9, col:0]	Expected \"}\" at end of file.")]
+		[DataRow("Simple Document - Missing End Bracket", "ERROR: Simple Document - Missing End Bracket.nls [line: 9, col:0]	Expected \"}\" at end of file.")]
 		public void SyntaxException(string file, string expectedError)
 		{
 			AssertX.Throws<ParseException>(
@@ -19,7 +19,7 @@ namespace narlang_test
 		}
 
 		[DataTestMethod]
-		/*[DataRow("Simple Story", "Test", "This is a test.\r\n")]
+		/*[DataRow("Simple Document", "Test", "This is a test.\r\n")]
 		[DataRow("Reference", "Test", "This is a test.\r\n")]
 		[DataRow("Two References", "Test", "This is the first object.\r\nThis is the second object.\r\n")]*/
 		[DataRow("Comments", "Test", "This is a test.\r\n")]

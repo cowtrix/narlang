@@ -2,6 +2,7 @@
 {
 	public static class Const
 	{
+		public const string KEYWORD_DOCUMENT = "document";
 		public const string KEYWORD_MENTIONS = "~mentions";
 		public const string RENDER_FUNCTION = "render";
 		public const string NAME_VARIABLE = "name";

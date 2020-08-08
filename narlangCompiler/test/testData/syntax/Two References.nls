@@ -1,4 +1,4 @@
-﻿new story "Test"
+﻿new document "Test"
 {
 	render
 	{

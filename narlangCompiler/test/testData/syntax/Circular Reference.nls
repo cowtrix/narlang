@@ -1,7 +1,7 @@
-﻿new story "s" 
+﻿new document "s" 
 {
 	render
 	{
-		story "s"
+		document "s"
 	}
 }

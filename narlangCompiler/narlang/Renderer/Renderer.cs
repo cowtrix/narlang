@@ -24,14 +24,14 @@ namespace narlang
 			outPaths = new List<string>();
 			foreach (var node in Nodes.Values)
 			{
-				var isStory = node.ID.Type == "story";
-				if (!Compiler.Debug && !isStory)
+				var isEntryPoint = node.ID.Type == Const.KEYWORD_DOCUMENT;
+				if (!Compiler.Debug && !isEntryPoint)
 				{
 					continue;
 				}
 				// Get the stories
 				var outDir = OutputDir;
-				if(!isStory)
+				if(!isEntryPoint)
 				{
 					outDir = Path.Combine(outDir, Const.SYMBOLS_DIR, node.ID.Type);
 					Directory.CreateDirectory(outDir);
