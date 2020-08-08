@@ -57,8 +57,6 @@ jobs:
 
     env:
       Solution_Name: .\narlangCompiler\narlangCompiler.sln
-      Test_Project_Path: .\narlangCompiler\test\test.csproj
-      Compiler_Project_Path: .\narlangCompiler\narlang\narlang.csproj
 
     steps:
     - name: Checkout
@@ -78,11 +76,11 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test $Test_Project_Path
+      run: dotnet test .\narlangCompiler\test\test.csproj
     
     # Update nuget package
     - name: Publish
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-       PROJECT_FILE_PATH: $Compiler_Project_Path
+       PROJECT_FILE_PATH: .\narlangCompiler\narlang\narlang.csproj
        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
