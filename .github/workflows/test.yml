@@ -78,11 +78,11 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test ${{Test_Project_Path}}
+      run: dotnet test $Test_Project_Path
     
     # Update nuget package
     - name: Publish
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-       PROJECT_FILE_PATH: ${{Compiler_Project_Path}}
+       PROJECT_FILE_PATH: $Compiler_Project_Path
        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
