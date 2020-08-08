@@ -1,0 +1,3 @@
+﻿$render
+
+	- [$author]($source)

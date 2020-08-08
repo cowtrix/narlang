@@ -1,0 +1,7 @@
+﻿new story "s" 
+{
+	render
+	{
+		story "s"
+	}
+}

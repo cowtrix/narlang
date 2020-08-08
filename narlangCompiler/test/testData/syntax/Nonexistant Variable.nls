@@ -1,0 +1,8 @@
+﻿new story "s" 
+{
+	render
+	{
+		$nonexistantVariable
+	}
+}
+

@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "narlang": {
+      "commandName": "Project",
+      "commandLineArgs": "/input:C:\\Users\\gbfinnes\\Documents\\repos\\basilisk\\ /output:..\\build\\",
+      "workingDirectory": "C:\\Users\\gbfinnes\\Documents\\repos\\narlang\\narlangCompiler\\narlang"
+    }
+  }
+}
