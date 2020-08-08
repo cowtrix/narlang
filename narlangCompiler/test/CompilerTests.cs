@@ -1,12 +1,25 @@
 ﻿using narlang;
+using System;
 using System.IO;
 
 namespace narlang_test
 {
+	public static class TestUtil
+	{
+		public static string DataPath { get; set; } = @".\testData\";
+		public static string BuildPath => Path.GetTempPath() + "narlangtest\\build";
+	}
+
 	public abstract class CompilerTests
 	{
-		protected virtual string DataFolder => GetType().Name.ToLowerInvariant();
-		protected string DataPath => Path.GetFullPath(@".\testData\" + DataFolder);
-		protected string BuildPath => "test\\build";
+		protected string GetInputPath()
+		{
+			return Path.Combine(TestUtil.DataPath, GetType().Name.ToLowerInvariant());
+		}
+
+		protected string GetOutputPath()
+		{
+			return TestUtil.BuildPath;
+		}
 	}
 }

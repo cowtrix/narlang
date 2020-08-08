@@ -19,11 +19,18 @@
 
   <ItemGroup>
     <None Update="testData\syntax\Circular Reference.nls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="testData\syntax\Nonexistant Variable.nls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="testData\syntax\Simple Story.nls">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="mkdir  $(TargetDir)testData&#xD;&#xA;xcopy $(ProjectDir)testData $(TargetDir)testData  /E /H /Y" />
+  </Target>
 
 </Project>

@@ -33,8 +33,15 @@ namespace narlang
 		{
 			var sln = new NarlangStreamReader();
 			// Generate any directories needed in output
+			if(!output.EndsWith('\\'))
+			{
+				output += '\\';
+			}
 			output = Path.GetFullPath(Path.GetDirectoryName(output));
-			Directory.Delete(output, true);
+			if(Directory.Exists(output))
+			{
+				Directory.Delete(output, true);
+			}
 			Directory.CreateDirectory(output);
 			foreach (var path in DiscoverFiles(input))
 			{

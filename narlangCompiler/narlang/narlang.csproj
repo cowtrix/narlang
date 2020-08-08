@@ -15,11 +15,15 @@
 
   <ItemGroup>
     <None Update="templates\html\quote.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="templates\md\quote.md">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="mkdir $(TargetDir)templates&#xD;&#xA;xcopy $(ProjectDir)templates $(TargetDir)templates  /E /H /Y" />
+  </Target>
 
 </Project>
