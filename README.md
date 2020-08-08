@@ -29,11 +29,9 @@ Narlang projects are folders containing `.nls` (narlang source) files. Directori
 
 ### Keywords
 
-`new` - defines a new object. Expects `new <object_type> "<object_name>"`
-
-`document` - defines a new rendering entry point and document output. Each `document` object will generate an output.
-
-`render` - a function that reduces down into a string that is rendered out into the document.
+- `new` - defines a new object. Expects `new <object_type> "<object_name>"`
+- `document` - defines a new rendering entry point and document output. Each `document` object will generate an output.
+- `render` - a function that reduces down into a string that is rendered out into the document.
 
 ### Object Types
 
@@ -42,9 +40,7 @@ The purpose of object types within narlang is to inform the renderer about how t
 The narlang compiler comes with some inbuilt templates that you can utilise or modify:
 
 - `chapter` - Formats like a chapter in a book.
-
 - `quote` - Formats like a quote, including support for a `$author` and `$source` formatting.
-
 - `section` - Formats like a section of text, ending with a horizontal rule.
 
 ### Compilation
