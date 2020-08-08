@@ -56,8 +56,9 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: narlangCompiler\narlangCompiler.sln                        # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Path: narlangCompiler\test\test.csproj                       # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+      Solution_Name: .\narlangCompiler\narlangCompiler.sln
+      Test_Project_Path: .\narlangCompiler\test\test.csproj
+      Compiler_Project_Path: .\narlangCompiler\narlang\narlang.csproj
 
     steps:
     - name: Checkout
@@ -77,4 +78,11 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test
+      run: dotnet test ${{Test_Project_Path}}
+    
+    # Update nuget package
+    - name: Publish
+      uses: brandedoutcast/publish-nuget@v2.5.2
+      with:
+       PROJECT_FILE_PATH: ${{Compiler_Project_Path}}
+       NUGET_KEY: ${{secrets.NUGET_API_KEY}}
