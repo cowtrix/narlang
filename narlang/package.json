@@ -1,0 +1,25 @@
+{
+    "name": "narlang",
+    "displayName": "narlang",
+    "description": "Narrative Language Engine",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.47.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "narlang",
+            "aliases": ["narlang", "narlang"],
+            "extensions": [".nls"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "narlang",
+            "scopeName": "text",
+            "path": "./syntaxes/narlang.tmLanguage.json"
+        }]
+    }
+}

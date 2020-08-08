@@ -1,0 +1,86 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "narlang",
+	"fileTypes": [
+        "nls"
+    ],
+	"patterns": [
+		{
+			"include": "#expression"
+		}
+	],
+	"repository": {
+		"expression": {
+            "name": "meta.expression.sqf",
+            "patterns": [
+                {
+                    "include": "#strings"
+                },
+                {
+                    "include": "#keywords"
+				},
+				{
+                    "include": "#block"
+				},
+				{
+                    "include": "#comment-block"
+				},
+				{
+                    "include": "#comment-line"
+				}]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.narlang",
+					"match": "\b(new)\b"
+				},
+				{
+					"name": "storage.type.narlang",
+					"match": "\b(story|character|object|concept|quote|chapter)\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.narlang",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.narlang",
+					"match": "\\\\."
+				}
+			]
+		},
+		"block": {
+            "begin": "\\{",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.brace.curly.narlang"
+                }
+            },
+            "end": "\\}",
+            "endCaptures": {
+                "0": {
+                    "name": "meta.brace.curly.narlang"
+                }
+            },
+            "name": "meta.block.narlang",
+            "patterns": [
+                {
+                    "include": "#expression"
+                }
+            ]
+		},
+		"comment-block": {
+            "begin": "/\\*",
+            "end": "\\*/",
+            "name": "comment.block.narlang"
+        },
+        "comment-line": {
+            "match": "(//).*$\\n?",
+            "name": "comment.line.narlang"
+        }
+	},
+	"scopeName": "source.narlang"
+}
