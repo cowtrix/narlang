@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace narlang
 {
-	public class NarlangStream : IEnumerable<char>
+	internal class NarlangStream : IEnumerable<char>
 	{
 		private enum eState
 		{
@@ -16,19 +16,19 @@ namespace narlang
 			blockcomment,
 		}
 		private eState m_state;
-		public int Index { get; private set; }
-		public int LineNumber { get; private set; } = 1;
-		public string SourcePath { get; }
-		public string Peek { get; private set; }
-		public string RestOfLine { get; private set; }
-		public string CurrentLine => m_lineHistory.ToString() + RestOfLine;
-		public int CharacterIndex => m_lineHistory.Length;
-		public NarlangStreamReader Reader { get; }
+		internal int Index { get; private set; }
+		internal int LineNumber { get; private set; } = 1;
+		internal string SourcePath { get; }
+		internal string Peek { get; private set; }
+		internal string RestOfLine { get; private set; }
+		internal string CurrentLine => m_lineHistory.ToString() + RestOfLine;
+		internal int CharacterIndex => m_lineHistory.Length;
+		internal NarlangStreamReader Reader { get; }
 
 		private string m_raw;
 		private StringBuilder m_lineHistory = new StringBuilder();
 
-		public NarlangStream(NarlangStreamReader reader, string path, string data)
+		internal NarlangStream(NarlangStreamReader reader, string path, string data)
 		{
 			Reader = reader;
 			SourcePath = path;
@@ -112,7 +112,7 @@ namespace narlang
 			return GetEnumerator();
 		}
 
-		public void Skip(int length)
+		internal void Skip(int length)
 		{
 			if (m_raw.Length < Index + length)
 			{
@@ -122,7 +122,7 @@ namespace narlang
 			Skip(str);
 		}
 
-		public void Skip(string str)
+		internal void Skip(string str)
 		{
 			m_lineHistory.Append(str);
 			Index += str.Length;
@@ -141,7 +141,7 @@ namespace narlang
 			Invalidate();
 		}
 
-		public void ClearLine()
+		internal void ClearLine()
 		{
 			m_lineHistory.Clear();
 		}

@@ -2,10 +2,10 @@
 
 namespace narlang
 {
-	public struct NarlangID
+	internal struct NarlangID
 	{
-		public string Type { get; set; }
-		public string Identifier { get; set; }
+		internal string Type { get; set; }
+		internal string Identifier { get; set; }
 
 		public override bool Equals(object obj)
 		{

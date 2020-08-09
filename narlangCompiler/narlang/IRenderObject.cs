@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace narlang
 {
-	public interface INarlangObject
+	internal interface INarlangObject
 	{
-		Guid Guid { get; }
+		public Guid Guid { get; }
 		FileAddress Address { get; }
 		NarlangID ID { get; }
 		NarlangNode Parent { get; }
 		string Render(IRenderer rendererContext);
 	}
 
-	public interface IRenderer
+	internal interface IRenderer
 	{
 		Dictionary<NarlangID, NarlangNode> Nodes { get; }
 		void RenderValue(string path, string str, INarlangObject source);

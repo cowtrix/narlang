@@ -10,12 +10,12 @@ using System.Text.RegularExpressions;
 
 namespace narlang
 {
-	public class NarlangStreamReader
+	internal class NarlangStreamReader
 	{
-		public Dictionary<NarlangID, NarlangNode> Nodes { get; } = new Dictionary<NarlangID, NarlangNode>();
+		internal Dictionary<NarlangID, NarlangNode> Nodes { get; } = new Dictionary<NarlangID, NarlangNode>();
 		private NarlangNode m_currentNode;
-		public NarlangStream RootStream { get; private set; }
-		public void ReadStream(string file, string data)
+		internal NarlangStream RootStream { get; private set; }
+		internal void ReadStream(string file, string data)
 		{
 			var nStr = new NarlangStream(this, file, data);
 			FileAddress address() => new FileAddress

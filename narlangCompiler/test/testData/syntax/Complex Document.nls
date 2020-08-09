@@ -1,0 +1,12 @@
+﻿new document "Test"
+{
+	render
+	{
+		This is a test.
+	}
+}
+
+new custom "Custom Object"
+{
+	
+}

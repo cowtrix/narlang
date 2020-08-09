@@ -5,11 +5,11 @@ using System.Text;
 
 namespace narlang
 {
-	public class NarlangFunction : NarlangObject
+	internal class NarlangFunction : NarlangObject
 	{
-		public List<INarlangObject> Data = new List<INarlangObject>();
+		internal List<INarlangObject> Data = new List<INarlangObject>();
 
-		public NarlangFunction(NarlangNode parent, NarlangID id, FileAddress address, IEnumerable<INarlangObject> data) : base(id, address)
+		internal NarlangFunction(NarlangNode parent, NarlangID id, FileAddress address, IEnumerable<INarlangObject> data) : base(id, address)
 		{
 			Data = data.ToList();
 			Parent = parent;

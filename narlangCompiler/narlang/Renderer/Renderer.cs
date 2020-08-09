@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace narlang
 {
-	public abstract class Renderer : IRenderer
+	internal abstract class Renderer : IRenderer
 	{
 		public Dictionary<NarlangID, NarlangNode> Nodes { get; }
 		protected HashSet<NarlangID> m_cycleDetector = new HashSet<NarlangID>();
@@ -56,7 +56,7 @@ namespace narlang
 			return false;
 		}
 
-		public static IRenderer GetForFormat(string format, string outputPath, object nodes)
+		internal static IRenderer GetForFormat(string format, string outputPath, object nodes)
 		{
 			var types = ReflectionExtensions.GetConcreteClasses<IRenderer>();
 			foreach (var t in types)

@@ -19,9 +19,10 @@ namespace narlang_test
 		}
 
 		[DataTestMethod]
-		/*[DataRow("Simple Document", "Test", "This is a test.\r\n")]
+		[DataRow("Simple Document", "Test", "This is a test.\r\n")]
+		[DataRow("Simple Document - Compact", "Test", "This is a test.\r\n")]
 		[DataRow("Reference", "Test", "This is a test.\r\n")]
-		[DataRow("Two References", "Test", "This is the first object.\r\nThis is the second object.\r\n")]*/
+		[DataRow("Two References", "Test", "This is the first object.\r\nThis is the second object.\r\n")]
 		[DataRow("Comments", "Test", "This is a test.\r\n")]
 		public void SyntaxOutput(string file, string outFileName, string outFileContent)
 		{

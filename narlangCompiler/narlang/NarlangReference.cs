@@ -4,18 +4,18 @@ using System.IO;
 
 namespace narlang
 {
-	public struct FileAddress
+	internal struct FileAddress
 	{
-		public int LineNumber;
-		public int CharacterIndex;
-		public string SourcePath;
+		internal int LineNumber;
+		internal int CharacterIndex;
+		internal string SourcePath;
 
 		public override string ToString() => $"{Path.GetFileName(SourcePath)} [r:{LineNumber}, c:{CharacterIndex}]";
 	}
 
-	public class NarlangReference : NarlangObject
+	internal class NarlangReference : NarlangObject
 	{
-		public NarlangReference(NarlangID id, FileAddress address) : base(id, address)
+		internal NarlangReference(NarlangID id, FileAddress address) : base(id, address)
 		{
 		}
 

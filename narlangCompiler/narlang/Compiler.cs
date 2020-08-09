@@ -9,7 +9,7 @@ namespace narlang
 {
 	public static class Compiler
 	{
-		public static bool Debug { get; private set; } = true;
+		internal static bool Debug { get; private set; } = true;
 
 		static void Main(string[] args)
 		{

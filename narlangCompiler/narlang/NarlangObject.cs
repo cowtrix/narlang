@@ -2,9 +2,9 @@
 
 namespace narlang
 {
-	public abstract class NarlangObject : INarlangObject
+	internal abstract class NarlangObject : INarlangObject
 	{
-		public NarlangObject(NarlangID id, FileAddress address)
+		internal NarlangObject(NarlangID id, FileAddress address)
 		{
 			Guid = Guid.NewGuid();
 			Address = address;
@@ -17,7 +17,7 @@ namespace narlang
 
 		public NarlangID ID { get; }
 
-		public NarlangNode Parent { get; protected set; }
+		public NarlangNode Parent { get; set; }
 
 		public string Render(IRenderer rendererContext)
 		{

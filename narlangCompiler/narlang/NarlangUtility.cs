@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace narlang
 {
-	public static class NarlangUtility
+	internal static class NarlangUtility
 	{
-		public static string ReplaceVariables(string templateValue, IRenderer renderer, NarlangNode context)
+		internal static string ReplaceVariables(string templateValue, IRenderer renderer, NarlangNode context)
 		{
 			var match = Regex.Match(templateValue, Const.VARIABLE_REGEX);
 			while (match.Success)

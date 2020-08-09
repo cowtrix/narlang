@@ -1,28 +1,28 @@
 ﻿namespace narlang
 {
-	public static class Const
+	internal static class Const
 	{
-		public const string KEYWORD_DOCUMENT = "document";
-		public const string KEYWORD_MENTIONS = "~mentions";
-		public const string RENDER_FUNCTION = "render";
-		public const string NAME_VARIABLE = "name";
-		public const string GUID_VARIABLE = "guid";
-		public const string MULTILINE_COMMENT_START = @"/*";
-		public const string MULTILINE_COMMENT_END = @"*/";
-		public const string SINGLE_LINE_COMMENT = @"^\s*(\/\/)(.*)";
-		public const string REGEX_NEW = "^\\s*new\\s*(\\w*)\\s*\\\"(.*?)\\\"";
-		public const string KEYWORD_NEW = "new";
-		public const string BLOCK_START = "{";
-		public const string BLOCK_END = "}";
-		public const string NEWLINE = "\r\n";
-		public const string FUNCTION_DECLARATION_REGEX = @"^\s*(\w+)\s*\{((?:[\n\r\s]|.)*?)\}\s*";
-		public const string VARIABLE_DECLARATION_REGEX = "^\\s*(\\w{3,}):\\s*\\\"(.*)\\\"\\s*";
-		public const string REFERENCE_REGEX = "~(\\w{3,})\\s*\"(.*)\"";
-		public const char REFERENCE_CHAR = '~';
-		public const string VARIABLE_REGEX = "\\$(\\w{3,})";
+		internal const string KEYWORD_DOCUMENT = "document";
+		internal const string KEYWORD_MENTIONS = "~mentions";
+		internal const string RENDER_FUNCTION = "render";
+		internal const string NAME_VARIABLE = "name";
+		internal const string GUID_VARIABLE = "guid";
+		internal const string MULTILINE_COMMENT_START = @"/*";
+		internal const string MULTILINE_COMMENT_END = @"*/";
+		internal const string SINGLE_LINE_COMMENT = @"^\s*(\/\/)(.*)";
+		internal const string REGEX_NEW = "^\\s*new\\s*(\\w*)\\s*\\\"(.*?)\\\"";
+		internal const string KEYWORD_NEW = "new";
+		internal const string BLOCK_START = "{";
+		internal const string BLOCK_END = "}";
+		internal const string NEWLINE = "\r\n";
+		internal const string FUNCTION_DECLARATION_REGEX = @"^\s*(\w+)\s*\{((?:[\n\r\s]|.)*?)\}\s*";
+		internal const string VARIABLE_DECLARATION_REGEX = "^\\s*(\\w{3,}):\\s*\\\"(.*)\\\"\\s*";
+		internal const string REFERENCE_REGEX = "~(\\w{3,})\\s*\"(.*)\"";
+		internal const char REFERENCE_CHAR = '~';
+		internal const string VARIABLE_REGEX = "\\$(\\w{3,})";
 
-		public const string TEMPLATE_DIR = @".\templates\";
-		public const string SYMBOLS_DIR = "symbols";
-		public const string TYPE_VARIABLE = "type";
+		internal const string TEMPLATE_DIR = @".\templates\";
+		internal const string SYMBOLS_DIR = "symbols";
+		internal const string TYPE_VARIABLE = "type";
 	}
 }

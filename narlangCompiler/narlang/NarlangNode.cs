@@ -6,22 +6,21 @@ using System.Linq;
 
 namespace narlang
 {
-	public class NarlangNode : NarlangObject
+	internal class NarlangNode : NarlangObject
 	{
-		public bool Opened { get; set; }
-		public NarlangNode Parent { get; set; }
-		public List<NarlangNode> Children { get; } = new List<NarlangNode>();
-		public List<NarlangMention> Mentions { get; } = new List<NarlangMention>();
-		public Dictionary<string, INarlangObject> Data { get; } = new Dictionary<string, INarlangObject>();
+		internal bool Opened { get; set; }
+		internal List<NarlangNode> Children { get; } = new List<NarlangNode>();
+		internal List<NarlangMention> Mentions { get; } = new List<NarlangMention>();
+		internal Dictionary<string, INarlangObject> Data { get; } = new Dictionary<string, INarlangObject>();
 		protected NarlangFunction RenderFunction => Data.SingleOrDefault(kvp => kvp.Key == Const.RENDER_FUNCTION).Value as NarlangFunction;
 
-		public NarlangNode(NarlangID id, FileAddress address) : base(id, address)
+		internal NarlangNode(NarlangID id, FileAddress address) : base(id, address)
 		{
 			if(Parent == null)
 				Logger.Debug($"New Node: {id}");
 		}
 
-		public NarlangNode(NarlangNode parentNode, NarlangID id, FileAddress address) : this(id, address)
+		internal NarlangNode(NarlangNode parentNode, NarlangID id, FileAddress address) : this(id, address)
 		{
 			Parent = parentNode;
 			Logger.Debug($"New Node: {id} {Parent}");

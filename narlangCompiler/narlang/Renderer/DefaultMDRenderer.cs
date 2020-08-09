@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace narlang
 {
-	public class DefaultMDRenderer : Renderer
+	internal class DefaultMDRenderer : Renderer
 	{
 		public DefaultMDRenderer(string outputDir, Dictionary<NarlangID, NarlangNode> nodes) : base(outputDir, nodes)
 		{

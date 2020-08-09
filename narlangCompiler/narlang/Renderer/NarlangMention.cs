@@ -1,9 +1,9 @@
 ﻿namespace narlang
 {
-	public class NarlangMention : NarlangObject
+	internal class NarlangMention : NarlangObject
 	{
-		public string Snippet { get; }
-		public NarlangMention(string snippet, NarlangID id, FileAddress address) : base(id, address)
+		internal string Snippet { get; }
+		internal NarlangMention(string snippet, NarlangID id, FileAddress address) : base(id, address)
 		{
 			Snippet = snippet;
 		}

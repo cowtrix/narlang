@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace narlang
 {
-	public class HtmlRenderer : DefaultMDRenderer
+	internal class HtmlRenderer : DefaultMDRenderer
 	{
 		public HtmlRenderer(string outputPath, Dictionary<NarlangID, NarlangNode> nodes) : base(outputPath, nodes)
 		{

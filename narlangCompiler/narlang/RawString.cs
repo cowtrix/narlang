@@ -8,12 +8,12 @@ using System.Text.RegularExpressions;
 
 namespace narlang
 {
-	public class RawString : NarlangObject
+	internal class RawString : NarlangObject
 	{
 		private string m_value;
-		public Encoding Encoding;
+		internal Encoding Encoding;
 
-		public RawString(NarlangNode parent, string str, NarlangID id, FileAddress address, Encoding encoding = null) : base(id, address)
+		internal RawString(NarlangNode parent, string str, NarlangID id, FileAddress address, Encoding encoding = null) : base(id, address)
 		{
 			Parent = parent;
 			m_value = StringExtensions.FormatString(str);
