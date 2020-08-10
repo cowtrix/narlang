@@ -11,7 +11,7 @@
 	],
 	"repository": {
 		"expression": {
-            "name": "meta.expression.sqf",
+            "name": "meta.expression.narlang",
             "patterns": [
                 {
                     "include": "#strings"
@@ -32,12 +32,8 @@
 		"keywords": {
 			"patterns": [
 				{
-					"name": "keyword.control.narlang",
-					"match": "\b(new)\b"
-				},
-				{
-					"name": "storage.type.narlang",
-					"match": "\b(story|character|object|concept|quote|chapter)\b"
+					"name": "keyword.narlang",
+					"match": "\\b(new)\\b"
 				}
 			]
 		},
@@ -82,5 +78,5 @@
             "name": "comment.line.narlang"
         }
 	},
-	"scopeName": "source.narlang"
+	"scopeName": "source.markdown.narlang"
 }
