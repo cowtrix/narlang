@@ -2,7 +2,7 @@
 
 Narlang (**N**arrative **L**anguage) is a markup language for generating documents. 
 
-It was designed as a tool to assist in the composition of long, complex documents. It's purpose is to combine many of the features of a code language with general document production.
+It was designed as a tool to assist in the composition of long, complex documents, specifically novels. Its purpose is to combine many of the features of a code language with general document production.
 
 ## Features (current and planned)
 
@@ -14,7 +14,9 @@ It was designed as a tool to assist in the composition of long, complex document
 - [x] Render templates
 - [x] Markdown Renderer (powered by [Markdig](https://github.com/lunet-io/markdig))
 - [x] HTML Renderer
-- [ ] VSCode Extension (WIP)
+    - [x] Object references in debug export
+    - [x] Object mentions in debug export
+- [ ] VSCode Extension
 - [ ] Visual Studio Extension
 
 ## Core Concepts
@@ -47,7 +49,7 @@ The narlang compiler comes with some inbuilt templates that you can utilise or m
 
 Compile a narlang project like so:
 
-`.\narlangCompiler /input:"<file or directory>" /output:"<directory>" [/format:<string>]
+`.\narlangCompiler /input:"<file or directory>" /output:"<directory>" [/format:<string>]``
 
 - `input` - An `.nls` file or directory containing `.nls` files
 - `output` - An output directory. This directory will be deleted before compilation if it already exists, so be careful.
