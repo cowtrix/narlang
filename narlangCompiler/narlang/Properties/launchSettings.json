@@ -2,7 +2,7 @@
   "profiles": {
     "narlang": {
       "commandName": "Project",
-      "commandLineArgs": "/input:C:\\Users\\gbfinnes\\Documents\\repos\\basilisk\\ /output:C:\\Users\\gbfinnes\\Documents\\repos\\basilisk\\build\\",
+      "commandLineArgs": "build /input:C:\\Users\\gbfinnes\\Documents\\repos\\basilisk\\ /output:C:\\Users\\gbfinnes\\Documents\\repos\\basilisk\\build\\",
       "workingDirectory": "C:\\Users\\gbfinnes\\Documents\\repos\\narlang\\narlangCompiler\\narlang"
     }
   }

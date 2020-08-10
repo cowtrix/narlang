@@ -11,22 +11,15 @@ namespace narlang
 	{
 		internal static bool Debug { get; private set; } = true;
 
-		static void Main(string[] args)
+		[Command("^build ", "build /input:<path> /output:<path> [/format:<string> /debug]", "Build a narlang project")]
+		public static void Compile(CommandArguments commands)
 		{
-			try
-			{
-				var commands = new CommandArguments(args);
-				var output = commands.MustGetValue<string>("output");
-				var input = commands.MustGetValue<string>("input");
-				var format = commands.TryGetValue("format", "html");
-				Debug = commands.TryGetValue("debug", true);
+			var output = commands.MustGetValue<string>("output");
+			var input = commands.MustGetValue<string>("input");
+			var format = commands.TryGetValue("format", "html");
+			Debug = commands.TryGetValue("debug", true);
 
-				Compile(input, output, format);
-			}
-			catch (Exception e)
-			{
-				Logger.Exception(e);
-			}
+			Compile(input, output, format);
 		}
 
 		public static void Compile(string input, string output, string format = "md")
