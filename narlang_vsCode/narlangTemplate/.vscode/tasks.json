@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "narlang",
+            "type": "shell",
+            "args": [
+                "build",
+                "/input:.\\",
+                "/output:.\\build\\",
+                "/format:html"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": [
+                "$tsc"
+            ]
+        },
+        {
+            "label": "run",
+            "group": "build",
+            "dependsOn": [
+                "build",
+                "view"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "view",
+            "command": "Get-ChildItem .\\build\\*.* |  ForEach-Object { Write-Host $_; Invoke-Item $_ }",
+            "type": "shell",
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

@@ -17,7 +17,7 @@
                     "include": "#strings"
                 },
                 {
-                    "include": "#keywords"
+                    "include": "#new"
 				},
 				{
                     "include": "#block"
@@ -29,18 +29,30 @@
                     "include": "#comment-line"
 				}]
 		},
-		"keywords": {
+		"new": {
 			"patterns": [
 				{
 					"name": "keyword.narlang",
-					"match": "\\b(new)\\b"
-				}
+					"match": "\\b(new)\\s*(\\w*)\\s*\\\"(.*?)\\\"",
+					"captures": 
+					{ 
+						"0": {
+							"name": "string"
+						},
+						"1": {
+							"name": "keyword.narlang"
+						},
+						"2": {
+							"name": "entity.name.type"
+						}
+					}
+				}				
 			]
 		},
 		"strings": {
 			"name": "string.narlang",
-			"begin": "\"",
-			"end": "\"",
+			"begin": "\"|“",
+			"end": "\"|”",
 			"patterns": [
 				{
 					"name": "constant.character.escape.narlang",
@@ -63,10 +75,86 @@
             },
             "name": "meta.block.narlang",
             "patterns": [
-                {
-                    "include": "#expression"
+				{
+                    "include": "#comment-block"
+				},
+				{
+                    "include": "#comment-line"
+				},
+				{
+                    "include": "#function"
+				},
+				{
+                    "include": "#variable"
+				}
+            ]
+		},
+		"function": {
+            "begin": "(\\w*)\\s*(\\{)",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.brace.curly.narlang"
+				},
+				"1": {
+                    "name": "storage.type.name"
+				}
+            },
+            "end": "\\}",
+            "endCaptures": {
+                "0": {
+                    "name": "meta.brace.curly.narlang"
+                }
+            },
+			"name": "meta.block.narlang",
+            "patterns": [
+				{
+                    "include": "#reference"
+				},
+				{
+                    "include": "#comment-block"
+				},
+				{
+                    "include": "#comment-line"
+				},
+				{
+                    "include": "#strings"
+				},
+				{
+                    "include": "#markdown"
                 }
             ]
+		},
+		"variable": {
+			"patterns": [
+				{
+					"match": "(\\w*:)\\s*(\\\".*\\\")",
+					"captures": 
+					{ 
+						"0": {
+							"name": "string"
+						},
+						"1": {
+							"name": "variable.narlang"
+						}
+					}
+				}
+			]			
+		},
+		"reference": {
+			"patterns": [
+				{
+					"match": "(~\\w*)\\s*(\\\".*\\\")",
+					"captures": 
+					{ 
+						"0": {
+							"name": "string"
+						},
+						"1": {
+							"name": "variable.narlang"
+						}
+					}
+				}
+			]			
 		},
 		"comment-block": {
             "begin": "/\\*",
@@ -76,7 +164,40 @@
         "comment-line": {
             "match": "(//).*$\\n?",
             "name": "comment.line.narlang"
-        }
+		},
+		"markdown": {
+            "patterns": [
+				{
+                    "include": "#bold"
+				},
+				{
+                    "include": "#italics"
+                }
+			],
+			"repository": 
+			{
+				"bold": {
+					"match": "\\*.*?\\*",
+					"name": "markup.bold.toy",
+					"captures": 
+					{ 
+						"0": {
+							"patterns": [{ "include": "#italic" }]
+						}
+					}
+				},
+				"italics": {
+					"match": "_.*?_",
+					"name": "markup.italic.toy",
+					"captures": 
+					{ 
+						"0": {
+							"patterns": [{ "include": "#bold" }]
+						}
+					}
+				}
+			}
+		}
 	},
-	"scopeName": "source.markdown.narlang"
+	"scopeName": "text.html.markdown.narlang"
 }

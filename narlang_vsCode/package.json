@@ -18,7 +18,7 @@
         }],
         "grammars": [{
             "language": "narlang",
-            "scopeName": "source.markdown.narlang",
+            "scopeName": "text.html.markdown.narlang",
             "path": "./syntaxes/narlang.tmLanguage.json"
         }]
     }
