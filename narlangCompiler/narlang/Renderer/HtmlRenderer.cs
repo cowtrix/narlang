@@ -1,6 +1,7 @@
 ﻿using Common.Extensions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -141,7 +142,7 @@ namespace narlang
 			}
 			else
 			{
-				throw new Exception($"Can't dump symbols, no generic template found at .\\wrapper\\symbol\\{obj.ID.Type}");
+				throw new Exception($"Can't dump symbols, no generic template found at {GetTemplatePath("wrapper\\symbol\\")}{obj.ID.Type}");
 			}
 			return strData;
 		}

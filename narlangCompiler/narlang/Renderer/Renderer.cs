@@ -44,9 +44,15 @@ namespace narlang
 			return true;
 		}
 
+		protected string GetTemplatePath(string type)
+		{
+			var exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+			return Path.GetFullPath(Path.Combine(exeDir, Const.TEMPLATE_DIR, Extension, $"{type}.{Extension}"));
+		}
+
 		public bool TryGetTemplate(string type, out string template)
 		{
-			var templatePath = Path.GetFullPath(Path.Combine(Const.TEMPLATE_DIR, Extension, $"{type}.{Extension}"));
+			var templatePath = GetTemplatePath(type);
 			if (File.Exists(templatePath))
 			{
 				template = MutateTemplate(File.ReadAllText(templatePath));
