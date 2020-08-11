@@ -12,6 +12,7 @@
     <PackageProjectUrl>www.lrtw.net</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,7 +37,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="mkdir $(TargetDir)templates&#xD;&#xA;xcopy $(ProjectDir)templates $(TargetDir)templates  /E /H /Y" />
+    <Exec Command="mkdir $(TargetDir)templates&#xD;&#xA;if $(PlatformName) == x64 (&#xD;&#xA;    xcopy $(ProjectDir)templates $(TargetDir)templates  /E /H /Y&#xD;&#xA;) else if $(PlatformName) == x64 (&#xD;&#xA;    cp -r $(ProjectDir)templates $(TargetDir)templates&#xD;&#xA;)" />
   </Target>
 
 </Project>
