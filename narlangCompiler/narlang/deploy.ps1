@@ -1,0 +1,1 @@
+dotnet publish .\narlang.csproj --output ..\..\narlang_vsCode\compiler\

@@ -1,8 +1,11 @@
 {
     "name": "narlang",
+    "publisher": "cowtrix",
     "displayName": "narlang",
+    "icon": "icon.png" ,
+    "repository": "https://github.com/cowtrix/narlang",
     "description": "Narrative Language Engine",
-    "version": "0.0.1",
+    "version": "0.0.2",    
     "engines": {
         "vscode": "^1.47.0"
     },
