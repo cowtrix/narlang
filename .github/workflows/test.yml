@@ -28,13 +28,13 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test narlangCompiler\test\test.csproj
+      run: dotnet test ./narlangCompiler/test/test.csproj
     
     # Update nuget package
     - name: Publish Nuget
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-       PROJECT_FILE_PATH: narlangCompiler\narlang\narlang.csproj
+       PROJECT_FILE_PATH: ./narlangCompiler/narlang/narlang.csproj
        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
     - name: Publish VsCode Extension
