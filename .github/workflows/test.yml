@@ -1,4 +1,4 @@
-name: .NET Core Desktop
+name: Deploy
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test ./narlangCompiler/test/test.csproj
+      run: dotnet test -platform:linux ./narlangCompiler/test/test.csproj
     
     # Update nuget package
     - name: Publish Nuget
