@@ -11,7 +11,7 @@ namespace Common.Extensions
 	{
 		public static string LowerAndAlphaNumeric(this string str)
 		{
-			return Regex.Replace(str, @"^[a-zA-Z0-9_]*$", "").ToLowerInvariant();
+			return Regex.Replace(str, @"[^a-zA-Z\d\s:]", "").ToLowerInvariant();
 		}
 
 		public static string FormatString(string str)

@@ -2,6 +2,7 @@
 using narlang;
 using System.IO;
 using System.Linq;
+using Common.Extensions;
 
 namespace narlang_test
 {
@@ -19,17 +20,17 @@ namespace narlang_test
 		}
 
 		[DataTestMethod]
-		[DataRow("Simple Document", "Test", "This is a test.\r\n")]
-		[DataRow("Simple Document - Compact", "Test", "This is a test.\r\n")]
-		[DataRow("Reference", "Test", "This is a test.\r\n")]
-		[DataRow("Two References", "Test", "This is the first object.\r\nThis is the second object.\r\n")]
-		[DataRow("Comments", "Test", "This is a test.\r\n")]
+		[DataRow("Simple Document", "test", "This is a test.\r\n")]
+		[DataRow("Simple Document - Compact", "test", "This is a test.\r\n")]
+		[DataRow("Reference", "test", "This is a test.\r\n")]
+		[DataRow("Two References", "test", "This is the first object.\r\nThis is the second object.\r\n")]
+		[DataRow("Comments", "test", "This is a test.\r\n")]
 		public void SyntaxOutput(string file, string outFileName, string outFileContent)
 		{
 			Compiler.Compile($"{GetInputPath()}\\{file}.nls", GetOutputPath());
 			var files = Directory.GetFiles(GetOutputPath());
 			Assert.IsTrue(files.Length == 1, "Unexpected file count in build: " + files.Length);
-			Assert.AreEqual(Path.GetFileNameWithoutExtension(files.Single()), outFileName);
+			Assert.AreEqual(outFileName, Path.GetFileNameWithoutExtension(files.Single()));
 			Assert.AreEqual(outFileContent, File.ReadAllText(files.Single()));
 		}
 	}
