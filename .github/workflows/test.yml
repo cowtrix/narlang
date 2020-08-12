@@ -27,7 +27,7 @@ jobs:
         dotnet-version: 3.1.101
         
     - name: Set Permissions
-      run: chmod +rwx
+      run: chmod -R +rwx ./
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
