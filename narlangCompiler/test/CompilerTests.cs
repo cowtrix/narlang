@@ -1,4 +1,5 @@
-﻿using narlang;
+﻿using Common;
+using narlang;
 using System;
 using System.IO;
 
@@ -6,6 +7,11 @@ namespace narlang_test
 {
 	public static class TestUtil
 	{
+		static TestUtil()
+		{
+			Logger.Debug($"Data Path: {DataPath}");
+			Logger.Debug($"Build Path: {BuildPath}");
+		}
 		public static string DataPath
 		{
 			get
