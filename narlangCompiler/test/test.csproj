@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="mkdir &quot;$(TargetDir)templates;&quot;&#xD;&#xA;if $(PlatformName) == x64 (&#xD;&#xA;    xcopy &quot;$(SolutionDir)narlang\templates&quot; &quot;$(TargetDir)templates&quot;  /E /H /Y&#xD;&#xA;) else if $(PlatformName) == x64 (&#xD;&#xA;    cp -r &quot;$(SolutionDir)narlang/templates $(TargetDir)templates&quot;&#xD;&#xA;)" />
+    <Exec Command="mkdir &quot;$(TargetDir)templates;&quot;&#xD;&#xA;if $(PlatformName) == x64 (&#xD;&#xA;    xcopy &quot;$(SolutionDir)narlang\templates&quot; &quot;$(TargetDir)templates&quot;  /E /H /Y&#xD;&#xA;) else if $(PlatformName) == linux (&#xD;&#xA;    cp -r &quot;$(SolutionDir)narlang/templates $(TargetDir)templates&quot;&#xD;&#xA;)" />
   </Target>
 
 </Project>
