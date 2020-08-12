@@ -6,9 +6,18 @@ namespace narlang_test
 {
 	public static class TestUtil
 	{
-		public static string DataPath { get; set; } = Path.Combine(
-			Environment.GetEnvironmentVariable("TEST_DATA_PATH") ?? Path.GetFullPath("./"),
-			"narlangCompiler", "test", "testData");
+		public static string DataPath
+		{
+			get
+			{
+				var env = Environment.GetEnvironmentVariable("TEST_DATA_PATH");
+				if (string.IsNullOrEmpty(env))
+				{
+					return "./testData/";
+				}
+				return Path.Combine(env, "narlangCompiler", "test", "testData");
+			}
+		}
 		public static string BuildPath => Path.GetTempPath() + "narlangtest\\build";
 	}
 
