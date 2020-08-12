@@ -9,7 +9,10 @@ namespace Common.Extensions
 
 	public static class StringExtensions
 	{
-		
+		public static string LowerAndAlphaNumeric(this string str)
+		{
+			return Regex.Replace(str, @"^[a-zA-Z0-9_]*$", "").ToLowerInvariant();
+		}
 
 		public static string FormatString(string str)
 		{

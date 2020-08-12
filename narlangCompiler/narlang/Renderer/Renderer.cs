@@ -1,4 +1,5 @@
-﻿using Common.Extensions;
+﻿using Common;
+using Common.Extensions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,8 @@ namespace narlang
 					outDir = Path.Combine(outDir, Const.SYMBOLS_DIR, node.ID.Type);
 					Directory.CreateDirectory(outDir);
 				}
-				var outputPath = Path.GetFullPath(Path.Combine(outDir, $"{node.ID.Identifier}.{format}"));
+				var outputPath = Path.GetFullPath(Path.Combine(outDir, $"{node.ID.Identifier.LowerAndAlphaNumeric()}.{format}"));
+				Logger.Debug($"Outputting to " + outputPath);
 				RenderValue(outputPath, node.Render(this), node);
 				outPaths.Add(outputPath);
 			}
