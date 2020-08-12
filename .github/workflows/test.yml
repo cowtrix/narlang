@@ -32,6 +32,9 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test -v n /p:Platform=linux ./narlangCompiler/test/test.csproj
+      env:
+          TEST_DATA_PATH: $GITHUB_WORKSPACE
+          TEST_OUTPUT_PATH: ./
     
     # Update nuget package
     - name: Publish Nuget
