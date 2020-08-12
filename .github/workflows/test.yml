@@ -25,10 +25,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+        
+    - name: Set Permissions
+      run: chmod -R +rwx ./
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test -v d /p:Platform=linux ./narlangCompiler/test/test.csproj
+      run: dotnet test -v n /p:Platform=linux ./narlangCompiler/test/test.csproj
     
     # Update nuget package
     - name: Publish Nuget
