@@ -54,7 +54,7 @@ jobs:
     - name: Publish VsCode Extension
       uses: lannonbr/vsce-action@master
       with:
-          entryPoint: ./narlang_vsCode/
+          working-directory: ./narlang_vsCode/
           args: "publish -p $VSCE_TOKEN"
       env:
           VSCE_TOKEN: ${{secrets.VSCE_TOKEN}}
