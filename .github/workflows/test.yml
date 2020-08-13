@@ -28,12 +28,20 @@ jobs:
         
     - name: Set Permissions
       run: chmod -R +rwx ./
+    
+    - name: Set GITHUB_WORKSPACE env
+      run: echo ::set-env name=workspace::$GITHUB_WORKSPACE
+       
+    - name: Dump GitHub context
+      env:
+          GITHUB_CONTEXT: ${{ toJson(env) }}
+      run: echo "GITHUB_CONTEXT = $GITHUB_CONTEXT"
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test -v n /p:Platform=linux ./narlangCompiler/test/test.csproj
       env:
-          TEST_DATA_PATH: $GITHUB_WORKSPACE
+          TEST_DATA_PATH: ${{ env.workspace }}
           TEST_OUTPUT_PATH: ./
     
     # Update nuget package
