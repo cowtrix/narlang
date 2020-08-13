@@ -21,7 +21,7 @@ namespace narlang_test
 				{
 					return Path.GetFullPath("testData");
 				}
-				return Path.GetFullPath(Path.Combine(env, "narlangCompiler", "test", "testData"));
+				return Path.GetFullPath(env);
 			}
 		}
 		public static string BuildPath
@@ -33,7 +33,7 @@ namespace narlang_test
 				{
 					return Path.GetFullPath(Path.Combine(Path.GetTempPath(), "narlang", "build"));
 				}
-				return Path.GetFullPath(Path.Combine(env, "narlang", "build"));
+				return Path.GetFullPath(env);
 			}
 		}
 	}
