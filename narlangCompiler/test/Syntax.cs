@@ -15,7 +15,7 @@ namespace narlang_test
 		public void SyntaxException(string file, string expectedError)
 		{
 			AssertX.Throws<ParseException>(
-					() => Compiler.Compile($"{GetInputPath()}\\{file}.nls", GetOutputPath()),
+					() => Compiler.Compile($"{GetInputPath()}{Path.PathSeparator}{file}.nls", GetOutputPath()),
 					e => e.Message == expectedError);
 		}
 
@@ -27,7 +27,7 @@ namespace narlang_test
 		[DataRow("Comments", "test", "This is a test.\r\n")]
 		public void SyntaxOutput(string file, string outFileName, string outFileContent)
 		{
-			Compiler.Compile($"{GetInputPath()}\\{file}.nls", GetOutputPath());
+			Compiler.Compile($"{GetInputPath()}{Path.PathSeparator}{file}.nls", GetOutputPath());
 			var files = Directory.GetFiles(GetOutputPath());
 			Assert.IsTrue(files.Length == 1, "Unexpected file count in build: " + files.Length);
 			Assert.AreEqual(outFileName, Path.GetFileNameWithoutExtension(files.Single()));
