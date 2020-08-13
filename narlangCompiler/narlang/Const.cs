@@ -1,4 +1,6 @@
-﻿namespace narlang
+﻿using System;
+
+namespace narlang
 {
 	internal static class Const
 	{
@@ -14,7 +16,7 @@
 		internal const string KEYWORD_NEW = "new";
 		internal const string BLOCK_START = "{";
 		internal const string BLOCK_END = "}";
-		internal const string NEWLINE = "\r\n";
+		internal static string NEWLINE = Environment.NewLine;
 		internal const string FUNCTION_DECLARATION_REGEX = @"^\s*(\w+)\s*\{((?:[\n\r\s]|.)*?)\}\s*";
 		internal const string VARIABLE_DECLARATION_REGEX = "^\\s*(\\w{3,}):\\s*\\\"(.*)\\\"\\s*";
 		internal const string REFERENCE_REGEX = "~(\\w{3,})\\s*\"(.*)\"";
