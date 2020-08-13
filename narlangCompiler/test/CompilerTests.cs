@@ -19,9 +19,9 @@ namespace narlang_test
 				var env = Environment.GetEnvironmentVariable("TEST_DATA_PATH");
 				if (string.IsNullOrEmpty(env))
 				{
-					return "testData";
+					return Path.GetFullPath("testData");
 				}
-				return Path.Combine(env, "narlangCompiler", "test", "testData");
+				return Path.GetFullPath(Path.Combine(env, "narlangCompiler", "test", "testData"));
 			}
 		}
 		public static string BuildPath
@@ -31,9 +31,9 @@ namespace narlang_test
 				var env = Environment.GetEnvironmentVariable("TEST_OUTPUT_PATH");
 				if (string.IsNullOrEmpty(env))
 				{
-					return Path.Combine(Path.GetTempPath(), "narlang", "build");
+					return Path.GetFullPath(Path.Combine(Path.GetTempPath(), "narlang", "build"));
 				}
-				return Path.Combine(env, "narlang", "build");
+				return Path.GetFullPath(Path.Combine(env, "narlang", "build"));
 			}
 		}
 	}
