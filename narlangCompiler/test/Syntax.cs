@@ -3,6 +3,7 @@ using narlang;
 using System.IO;
 using System.Linq;
 using Common.Extensions;
+using System;
 
 namespace narlang_test
 {
@@ -27,6 +28,7 @@ namespace narlang_test
 		[DataRow("Comments", "test", "This is a test.\r\n")]
 		public void SyntaxOutput(string file, string outFileName, string outFileContent)
 		{
+			outFileContent = outFileContent.Replace("\r\n", Environment.NewLine);
 			Compiler.Compile($"{GetInputPath()}{Path.DirectorySeparatorChar}{file}.nls", GetOutputPath());
 			var files = Directory.GetFiles(GetOutputPath());
 			Assert.IsTrue(files.Length == 1, "Unexpected file count in build: " + files.Length);
