@@ -121,7 +121,7 @@ namespace narlang
 				}
 				else if (!char.IsWhiteSpace(c))
 				{
-					throw new ParseException(nStr, $"Couldn't parse: {nStr.CurrentLine}");
+					throw new ParseException(nStr, $"Couldn't parse: \"{nStr.CurrentLine}\" (char '{c}')");
 				}
 			}
 			if(m_currentNode != null)
