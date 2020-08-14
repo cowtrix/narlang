@@ -16,8 +16,12 @@ It was designed as a tool to assist in the composition of long, complex document
 - [x] HTML Renderer
     - [x] Object references in debug export
     - [x] Object mentions in debug export
-- [ ] VSCode Extension
-- [ ] Visual Studio Extension
+    
+## Ways to use narlang
+
+- [x] As a [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=cowtrix.narlang) with syntax highlighting and tasks (WIP)
+- [x] As a [nuget package](https://www.nuget.org/packages/narlang/) to just get the compiler.
+- [ ] Visual Studio Extension maybe in the future
 
 ## Core Concepts
 
