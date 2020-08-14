@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration: [Release]
 
     runs-on: ubuntu-20.04
     steps:
@@ -51,10 +51,11 @@ jobs:
        PROJECT_FILE_PATH: ./narlangCompiler/narlang/narlang.csproj
        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
-    - name: Publish VsCode Extension
-      uses: lannonbr/vsce-action@master
-      with:
-          entryPoint: ${{ env.workspace }}/narlang_vsCode/
-          args: "publish -p $VSCE_TOKEN"
-      env:
-          VSCE_TOKEN: ${{secrets.VSCE_TOKEN}}
+    # Waiting on a response to https://github.com/lannonbr/vsce-action/issues/5
+    #- name: Publish VsCode Extension
+    #  uses: lannonbr/vsce-action@master
+    #  with:
+    #      entryPoint: ${{ env.workspace }}/narlang_vsCode/
+    #      args: "publish -p $VSCE_TOKEN"
+    #  env:
+    #      VSCE_TOKEN: ${{secrets.VSCE_TOKEN}}
